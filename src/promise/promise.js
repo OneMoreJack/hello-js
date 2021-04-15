@@ -15,6 +15,13 @@ const STATUS = {
 }
 
 export function MyPromise(callback) {
+  if (typeof this !== 'object') {
+    throw new Error('MyPromise must be called as an constructor')
+  }
+  if (typeof callback !== 'function') {
+    throw new Error('Invalid callback')
+  }
+  
   defineValue(this, 'PromiseState', STATUS.PENDING)
   defineValue(this, 'PromiseResult', undefined)
 
