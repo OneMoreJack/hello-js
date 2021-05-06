@@ -13,6 +13,7 @@ const resolvePromise = (promise, x, resolve, reject) => {
     try {
       let then = x.then
       if (typeof then === 'function') {
+        // called 防止 then函数中多次调用 onFulfilled 和 onRejected
         then.call(x, y => {
           if (called) return
           called = true
@@ -139,11 +140,11 @@ export default class PromiseA {
   }
 
   finally(callback) {
-    return this.then(value => {
-      return PromiseA.resolve(callback()).then(() => value)
-    }, reason => {
-      return PromiseA.resolve(callback()).then(() => {throw reason})
-    })
+    const P = this.constructor
+    return this.then(
+      value => P.resolve(callback()).then(() => value),
+      reason => P.resolve(callback()).then(() => { throw reason })
+    )
   }
 
   static resolve(value) {
