@@ -14,15 +14,19 @@ const resolvePromise = (promise, x, resolve, reject) => {
       let then = x.then
       if (typeof then === 'function') {
         // called 防止 then函数中多次调用 onFulfilled 和 onRejected
-        then.call(x, y => {
-          if (called) return
-          called = true
-          resolvePromise(promise, y, resolve, reject)
-        }, r=> {
-          if (called) return
-          called = true
-          reject(r)
-        })
+        then.call(
+          x, 
+          y => {
+            if (called) return
+            called = true
+            resolvePromise(promise, y, resolve, reject)
+          }, 
+          r=> {
+            if (called) return
+            called = true
+            reject(r)
+          }
+        )
 
       } else {
         resolve(x)
@@ -158,7 +162,7 @@ export default class PromiseA {
   static all(promises) {
     if (!Array.isArray(promises)) {
       const type = typeof promises
-      return new TypeError(`${type} ${values} is not iterable`)
+      return new TypeError(`${type} ${promises} is not iterable`)
     }
     
     return new PromiseA((resolve, reject) => {
@@ -190,7 +194,7 @@ export default class PromiseA {
   static race(promises) {
     if (!Array.isArray(promises)) {
       const type = typeof promises
-      return new TypeError(`${type} ${values} is not iterable`)
+      return new TypeError(`${type} ${promises} is not iterable`)
     }
     
     return new Promise((resolve, reject) => {
