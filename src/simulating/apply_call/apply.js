@@ -9,7 +9,7 @@ Function.prototype.myapply = function(context, args) {
       fnSymbol = Symbol('fn')
   
   context[fnSymbol] = fn
-  const res = Array.isArray(args) ? context[fnSymbol](...args) : context[fnSymbol]()
+  const res = context[fnSymbol](...args)
   delete context[fnSymbol]
   return res
 }
