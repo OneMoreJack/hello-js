@@ -10,7 +10,7 @@ module.exports = {
   collectCoverage: true,
   coverageDirectory: 'coverage',
   collectCoverageFrom: [
-    'src/**/*.js',
+    'src/simulating/**/*.js',
   ],
   coverageReporters: ['html', 'lcov', 'text'],
 }
