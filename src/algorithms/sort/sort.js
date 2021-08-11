@@ -5,7 +5,7 @@
  * @param {Array} nums 
  * @returns {Array}
  */
-function bubble(nums) {
+export function bubble(nums) {
   for (let i = 0; i < nums.length - 1; i++) {
     for (let j = 1; j < nums.length - i; j++) {
       if (nums[j - 1] > nums[j]) {
@@ -23,7 +23,7 @@ function bubble(nums) {
  * @param {Array} nums 
  * @returns {Array}
  */
-function select(nums) {
+export function select(nums) {
   for (let i = 0; i < nums.length - 1; i++) {
     let curr = nums[i],
         minIdx = i
@@ -40,7 +40,19 @@ function select(nums) {
   return nums
 }
 
-module.exports = {
-  bubble,
-  select,
+/**
+ * 插入排序
+ */
+export function insert(nums) {
+  for (let i = 1; i < nums.length; i++) {
+    let prevIdx = i - 1,
+        temp = nums[i]
+
+    while (prevIdx >= 0 && nums[prevIdx] > temp) {
+      nums[prevIdx + 1] = nums[prevIdx]
+      prevIdx--
+    }
+    nums[prevIdx + 1] = temp
+  }
+  return nums
 }
