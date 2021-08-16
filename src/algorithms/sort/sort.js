@@ -42,6 +42,10 @@ export function select(nums) {
 
 /**
  * 插入排序
+ * 时间复杂度 O(n^2)
+ * 空间复杂度 O(1)
+ * @param {Array} nums 
+ * @returns {Array}
  */
 export function insert(nums) {
   for (let i = 1; i < nums.length; i++) {
@@ -55,4 +59,49 @@ export function insert(nums) {
     nums[prevIdx + 1] = temp
   }
   return nums
+}
+
+/* ------------------------- 堆排序 ------------------------ */
+let len = 0
+
+export function heapSort(nums) {
+  buildMaxHeap(nums)
+  for (let i = len - 1; i > 0; i--) {
+    swap(nums, 0, i)
+    len--
+    heapify(nums, 0)
+  }
+  return nums
+}
+
+function buildMaxHeap(nums) {
+  len = nums.length
+  for (let i = Math.floor(len / 2); i >= 0; i--) {
+    heapify(nums, i)
+  }
+}
+
+function heapify(nums, i) {
+  let left = i * 2 + 1,
+      right = i * 2 + 2,
+      largest = i
+  
+  if (left < len && nums[left] > nums[largest]) {
+    largest = left
+  }
+
+  if (right < len && nums[right] > nums[largest]) {
+    largest = right
+  }
+
+  if (largest !== i) {
+    swap(nums, i, largest)
+    heapify(nums, largest)
+  }
+}
+
+function swap(nums, i, j) {
+  let temp = nums[i]
+  nums[i] = nums[j]
+  nums[j] = temp
 }
