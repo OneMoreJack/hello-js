@@ -105,3 +105,33 @@ function swap(nums, i, j) {
   nums[i] = nums[j]
   nums[j] = temp
 }
+
+
+/* ------------------------ 归并排序 ------------------------ */
+export function mergeSort(nums) {
+  if (nums.length < 2) {
+    return nums
+  }
+
+  let middle = Math.floor(nums.length / 2),
+      left = nums.slice(0, middle),
+      right = nums.slice(middle)
+  
+  return merge(mergeSort(left), mergeSort(right))
+}
+
+function merge(arr1, arr2) {
+  let result = []
+
+  while(arr1.length && arr2.length) {
+    if (arr1[0] <= arr2[0])
+      result.push(arr1.shift())
+    else
+      result.push(arr2.shift())
+  }
+
+  if (arr1.length) result = [...result, ...arr1]
+  if (arr2.length) result = [...result, ...arr2]
+
+  return result
+}
