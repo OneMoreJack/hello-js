@@ -12,5 +12,5 @@ module.exports = {
   collectCoverageFrom: [
     'src/simulating/**/*.js',
   ],
-  coverageReporters: ['html', 'lcov', 'text'],
+  coverageReporters: ['html', 'text'],
 }
