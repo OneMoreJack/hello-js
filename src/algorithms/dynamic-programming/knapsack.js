@@ -29,3 +29,25 @@ function whatToPack(options, capacity) {
 }
 
 console.log(whatToPack(staff, 6))
+
+
+/**
+ * 01背包问题
+ * @param {Array} weights - 物品重量
+ * @param {Array} values - 物品价值
+ * @param {Number} W - 背包容量
+ */
+function knapsack01(weights, values, W) {
+  const n = weights.length
+
+  const arr = Array(W + 1).fill(0)
+  for (let i = 0; i < n; i++) {
+    for (let j = W; j >= weights[i]; j--) {
+      arr[j] = Math.max(arr[j], values[i] + arr[j - weights[i]])
+    }
+  }
+
+  return arr[W]
+}
+
+console.log(knapsack01([3, 1, 2, 2, 1], [10, 3, 9, 5, 6], 6))
