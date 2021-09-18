@@ -135,3 +135,24 @@ function merge(arr1, arr2) {
 
   return result
 }
+
+/* ------------------------ 希尔排序 ------------------------ */
+export function hellSort(nums) {
+  let interval = 1
+  while (interval < nums.length / 3) {
+    interval = interval * 3 + 1
+  }
+
+  while (interval > 0) {
+    for (let i = interval; i < nums.length; i++) {
+      let temp = i, curr = nums[temp]
+      while (temp - interval > -1 && nums[temp - interval] > curr) {
+        nums[temp] = nums[temp - interval]
+        temp -= interval
+      }
+      nums[temp] = curr
+    }
+    interval = Math.floor(interval / 3)
+  }
+  return nums
+}
