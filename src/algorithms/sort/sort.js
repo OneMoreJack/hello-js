@@ -156,3 +156,31 @@ export function hellSort(nums) {
   }
   return nums
 }
+
+/**
+ * 计数排序
+ * @param {number[]}} nums 
+ * @returns 
+ */
+export function countingSort(nums) {
+  const maxValue = nums.reduce((acc, curr) => Math.max(acc, curr), 0)
+
+  function sort(nums, maxValue) {
+    const bucket = Array(maxValue + 1).fill(0)
+
+    for (let i = 0; i < nums.length; i++) {
+      bucket[nums[i]]++
+    }
+
+    for (let i = 0, j = 0; i < bucket.length; i++) {
+      while (bucket[i] > 0) {
+        nums[j++] = i
+        bucket[i]--
+      }
+    }
+
+    return nums
+  }
+
+  return sort(nums, maxValue)
+}

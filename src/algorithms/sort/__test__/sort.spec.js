@@ -1,4 +1,4 @@
-const { bubble, select, insert, heapSort, mergeSort, hellSort } = require('../sort')
+const { bubble, select, insert, heapSort, mergeSort, hellSort, countingSort } = require('../sort')
 
 const test1 = func => {
   return () => {
@@ -41,4 +41,9 @@ describe('归并排序', () => {
 describe('希尔排序', () => {
   it('用例1', test1(hellSort))
   it('用例2', test2(hellSort))
+})
+
+describe('计数排序', () => {
+  it('用例1', test1(countingSort))
+  it('用例2', test2(countingSort))
 })
