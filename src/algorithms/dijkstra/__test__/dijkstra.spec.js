@@ -41,14 +41,8 @@ const graph2 = {
   end: {}
 }
 
-describe('迪克斯特拉--最短路径', () => {
-  
-  it('图1', () => {
-    expect(minDistance(graph1)).toBe(8)
-  })
-
-  it('图2', () => {
-    expect(minDistance(graph2)).toBe(60)
-  })
+it('迪克斯特拉--最短路径', () => {
+  expect(minDistance(graph1)).toBe(8)
+  expect(minDistance(graph2)).toBe(60)
 })
 
