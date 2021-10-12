@@ -13,8 +13,8 @@ function genRejectedPromise(err) {
 }
 
 describe('Test PromiseA', () => {
-  
   test('then:fulfilled', () => {
+    expect.assertions(1)
     return genPromise('hello').then(res => {
       expect(res).toBe('hello')
     })
