@@ -1,4 +1,5 @@
 const { ResizingArrayStack } = require('../stack-array')
+const { LinkedListStack } = require('../stack-linked-list')
 
 describe('Resizing Array Stack', () => {
   it('push, pop, isEmpty, size', () => {
@@ -57,3 +58,35 @@ describe('Resizing Array Stack', () => {
   })
 })
 
+
+describe('Linked List Stack', () => {
+  it('push, pop, isEmpty, size', () => {
+    const stack = new LinkedListStack()
+    expect(stack.isEmpty()).toBe(true)
+
+    stack.push(1)
+    stack.push(2)
+    stack.push(3)
+    expect(stack.isEmpty()).toBe(false)
+    expect(stack.size()).toBe(3)
+
+    const item = stack.pop()
+    expect(item).toBe(3)
+    expect(stack.size()).toBe(2)
+  })
+
+  it('iterable', () => {
+    const stack = new LinkedListStack()
+    stack.push(1)
+    stack.push(2)
+    stack.push(3)
+    stack.push(4)
+    stack.push(5)
+    const temp = []
+    for (let item of stack) {
+      temp.push(item)
+    }
+
+    expect(temp).toEqual([5, 4, 3, 2, 1])
+  })
+})
