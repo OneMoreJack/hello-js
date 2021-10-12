@@ -1,4 +1,4 @@
-const { ResizingArrayStack } = require('../stack')
+const { ResizingArrayStack } = require('../stack-array')
 
 describe('Resizing Array Stack', () => {
   it('push, pop, isEmpty, size', () => {
