@@ -2,8 +2,10 @@ import { QuickFind } from '../quick-find'
 import { QuickUnion } from '../quick-union'
 import { WeightedQuickUnion } from '../weighted-quick-union'
 import { UF } from '../base-uf'
+import { WeightedQuickUnionPathCompression } from '../weighted-quick-union-path-compression'
 
-const getTestFunc = (ctr: new (n: number) => UF) => {
+type UFCtr = new (n: number) => UF | WeightedQuickUnionPathCompression
+function getTestFunc<T extends UFCtr>(ctr: T) {
   return () => {
     const uf = new ctr(10)
     const inputs = [
@@ -42,4 +44,5 @@ describe('Union-find', () => {
   describe('quick-find', getTestFunc(QuickFind))
   describe('quick-union', getTestFunc(QuickUnion))
   describe('weighted-quick-find', getTestFunc(WeightedQuickUnion))
+  describe('weighted-quick-find-path-compression', getTestFunc(WeightedQuickUnionPathCompression))
 })
