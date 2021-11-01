@@ -75,25 +75,26 @@ export function toPostfix(tokens: string[]): string[] {
   for (let token of tokens) {
     if (isNumber(token)) {
       postfixTokens.push(token)
-    } else {
-      if (token === ')') {
-        let operator = stack.pop()
-        while (operator && operator !== '(') {
-          postfixTokens.push(operator)
-          if (stack.length === 0) break
-          operator = stack.pop()
-        }
-      } else if (token === '(') {
-        stack.push(token)
-      } else {
-        while (stack.length && !isPrior(token, stack[stack.length - 1])) {
-          postfixTokens.push(stack.pop() as string)
-        }
-        stack.push(token)
+    } 
+    else if (token === ')') {
+      let peek = stack.pop()
+      while (peek && peek !== '(') {
+        postfixTokens.push(peek as string)
+        peek = stack.pop()
       }
+    } 
+    else if (token === '(') {
+      stack.push(token)
+    } 
+    else {
+      while (stack.length && !isPrior(token, stack[stack.length - 1])) {
+        postfixTokens.push(stack.pop() as string)
+      }
+      stack.push(token)
     }
   }
 
+  // 表达式遍历完成后，检查操作符栈是否为空
   while (stack.length) {
     postfixTokens.push(stack.pop() as string)
   }
