@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "git:log": "git log --pretty=format:'[%cn %cr] %H \n %s \n'"
   },
   "keywords": [
     "JavaScript"
