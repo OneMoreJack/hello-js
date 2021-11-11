@@ -24,9 +24,14 @@ export function bubble(nums) {
  * @returns {Array}
  */
 export function select(nums) {
+  const exch = (nums, i, j) => {
+    let temp = nums[i]
+    nums[i] = nums[j]
+    nums[j] = temp
+  }
+
   for (let i = 0; i < nums.length - 1; i++) {
-    let curr = nums[i],
-        minIdx = i
+    let minIdx = i
     
     for (let j = i + 1; j < nums.length; j++) {
       if (nums[j] < nums[minIdx]) {
@@ -34,8 +39,7 @@ export function select(nums) {
       }
     }
     
-    nums[i] = nums[minIdx]
-    nums[minIdx] = curr
+    if (minIdx !== i) exch(nums, i, minIdx)
   }
   return nums
 }
