@@ -64,6 +64,24 @@ export function insert(nums) {
   return nums
 }
 
+export function binaryInsert(nums) {
+  for (let i = 1; i < nums.length; i++) {
+    let curr = nums[i]
+    let low = 0, high = i
+    while (low < high) {
+      const mid = low + Math.floor((high - low) / 2)
+      if (curr < nums[mid]) high = mid
+      else low = mid + 1
+    }
+
+    for (let j = i; j > low; j--) {
+      nums[j] = nums[j - 1]
+    }
+    nums[low] = curr
+  }
+  return nums
+}
+
 /* ------------------------- 堆排序 ------------------------ */
 let len = 0
 

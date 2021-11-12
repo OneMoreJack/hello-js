@@ -1,4 +1,4 @@
-const { bubble, select, insert, heapSort, mergeSort, hellSort, countingSort } = require('../sort')
+const { bubble, select, insert, binaryInsert, heapSort, mergeSort, hellSort, countingSort } = require('../sort')
 
 const getTestFunc = func => {
   return () => {
@@ -13,6 +13,7 @@ describe('排序', () => {
   it('冒泡排序', getTestFunc(bubble))
   it('选择排序', getTestFunc(select))
   it('插入排序', getTestFunc(insert))
+  it('插入排序:二分', getTestFunc(binaryInsert))
   it('堆排序', getTestFunc(heapSort))
   it('归并排序', getTestFunc(mergeSort))
   it('希尔排序', getTestFunc(hellSort))
