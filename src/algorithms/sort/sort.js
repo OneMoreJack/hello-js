@@ -1,3 +1,9 @@
+const exch = (nums, i, j) => {
+  let temp = nums[i]
+  nums[i] = nums[j]
+  nums[j] = temp
+}
+
 /**
  * 冒泡排序
  * 时间复杂度 O(n^2)
@@ -24,19 +30,11 @@ export function bubble(nums) {
  * @returns {Array}
  */
 export function select(nums) {
-  const exch = (nums, i, j) => {
-    let temp = nums[i]
-    nums[i] = nums[j]
-    nums[j] = temp
-  }
-
   for (let i = 0; i < nums.length - 1; i++) {
     let minIdx = i
     
     for (let j = i + 1; j < nums.length; j++) {
-      if (nums[j] < nums[minIdx]) {
-        minIdx = j
-      }
+      if (nums[j] < nums[minIdx]) minIdx = j
     }
     
     if (minIdx !== i) exch(nums, i, minIdx)
@@ -53,14 +51,10 @@ export function select(nums) {
  */
 export function insert(nums) {
   for (let i = 1; i < nums.length; i++) {
-    let prevIdx = i - 1,
-        temp = nums[i]
-
-    while (prevIdx >= 0 && nums[prevIdx] > temp) {
-      nums[prevIdx + 1] = nums[prevIdx]
-      prevIdx--
+    for (let j = i; j > 0; j--) {
+      if (nums[j - 1] > nums[j]) exch(nums, j, j - 1)
+      else break
     }
-    nums[prevIdx + 1] = temp
   }
   return nums
 }
