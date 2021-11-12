@@ -51,10 +51,15 @@ export function select(nums) {
  */
 export function insert(nums) {
   for (let i = 1; i < nums.length; i++) {
-    for (let j = i; j > 0; j--) {
-      if (nums[j - 1] > nums[j]) exch(nums, j, j - 1)
-      else break
+    let curr = nums[i],
+        idx = i
+    
+    while (idx >= 1 && nums[idx - 1] > curr) {
+      nums[idx] = nums[idx - 1]
+      idx--
     }
+
+    nums[idx] = curr
   }
   return nums
 }
