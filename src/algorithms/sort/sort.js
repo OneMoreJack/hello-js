@@ -157,6 +157,36 @@ function merge(arr1, arr2) {
   return result
 }
 
+
+/**
+ * 自底而上的归并排序
+ */
+export function mergeSortBu(nums) {
+  const N = nums.length
+  for (let sz = 1; sz < N; sz = sz * 2) {
+    for (let low = 0; low < N - sz; low += sz * 2 ) {
+      merge1(nums, low, low + sz - 1, Math.min(N - 1, low + sz * 2 - 1))
+    }
+  }
+  return nums
+}
+
+function merge1(nums, low, mid, high) {
+  let i = low, j = mid + 1
+
+  const aux = []
+  for (let k = low; k <= high; k++) {
+    aux[k] = nums[k]
+  }
+
+  for (let k = low; k <= high; k++) {
+    if (i > mid) nums[k] = aux[j++]
+    else if (j > high) nums[k] = aux[i++]
+    else if (aux[i] <= aux[j]) nums[k] = aux[i++]
+    else nums[k] = aux[j++]
+  }
+}
+
 /* ------------------------ 希尔排序 ------------------------ */
 export function hellSort(nums) {
   let interval = 1
