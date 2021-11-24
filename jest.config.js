@@ -8,7 +8,7 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-  collectCoverage: true,
+  collectCoverage: false,
   coverageDirectory: 'coverage',
   collectCoverageFrom: [
     'src/simulating/**/*.[tj]s',

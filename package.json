@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "test:cov": "jest --coverage=true",
     "git:log": "git log --pretty=format:'[%cn %cr] %H \n %s \n'"
   },
   "keywords": [
