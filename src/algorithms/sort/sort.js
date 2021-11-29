@@ -163,18 +163,18 @@ function merge(arr1, arr2) {
  */
 export function mergeSortBu(nums) {
   const N = nums.length
+  const aux = []
   for (let sz = 1; sz < N; sz = sz * 2) {
     for (let low = 0; low < N - sz; low += sz * 2 ) {
-      merge1(nums, low, low + sz - 1, Math.min(N - 1, low + sz * 2 - 1))
+      merge1(aux, nums, low, low + sz - 1, Math.min(N - 1, low + sz * 2 - 1))
     }
   }
   return nums
 }
 
-function merge1(nums, low, mid, high) {
+function merge1(aux, nums, low, mid, high) {
   let i = low, j = mid + 1
 
-  const aux = []
   for (let k = low; k <= high; k++) {
     aux[k] = nums[k]
   }
