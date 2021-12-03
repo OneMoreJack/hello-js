@@ -1,4 +1,4 @@
-import { quickSort } from '../quick-sort'
+import { quickSort, quick3Way } from '../quick-sort'
 
 const getTestFunc = (func: (a: number[]) => number[]) => {
   return () => {
@@ -11,5 +11,6 @@ const getTestFunc = (func: (a: number[]) => number[]) => {
 
 describe('快速排序', () => {
   test('原地快排--基础版', getTestFunc(quickSort))
+  test('三向切分', getTestFunc(quick3Way))
 })
 
